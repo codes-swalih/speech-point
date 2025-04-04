@@ -1,7 +1,8 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { getFirestore, collection, addDoc, query, where, getDocs, orderBy, limit as firestoreLimit, Timestamp } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
-import { getStorage } from "firebase/storage";
+import { initializeApp, getApp, FirebaseApp, getApps } from 'firebase/app';
+import { getFirestore, collection, addDoc, query, where, getDocs, Firestore, Timestamp, orderBy, limit as firestoreLimit } from 'firebase/firestore';
+import { getAuth, Auth } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
+import { FirebaseStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,10 +14,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase only on the client side
-let app;
-let db;
-let auth;
-let storage;
+let app: FirebaseApp;
+let db: Firestore;
+let auth: Auth;
+let storage: FirebaseStorage;
 
 // Add console logs to debug Firebase initialization
 if (typeof window !== 'undefined') {

@@ -543,40 +543,5 @@ export default function Home() {
 }
 
 // After successful transcription and summarization:
-const saveToHistory = async () => {
-  if (!session?.user?.id || !transcription || !keyPoints) return;
-  
-  try {
-    await saveTranscriptionHistory({
-      userId: session.user.id,
-      transcription: transcription,
-      summary: keyPoints,
-      language: detectedLanguage || "unknown",
-      title: transcription.split(" ").slice(0, 7).join(" ") + "..."
-    });
-    
-    toast({
-      title: "Saved to history",
-      description: "This transcription has been saved to your history.",
-    });
-  } catch (error) {
-    console.error("Error saving to history:", error);
-    toast({
-      title: "Error saving to history",
-      description: "There was a problem saving this transcription.",
-      variant: "destructive",
-    });
-  }
-};
 
-// Call this function after successful transcription and summarization
-// For example, in your handleTranscriptionComplete function:
-const handleTranscriptionComplete = async (result) => {
-  // ... existing transcription code ...
-  
-  // After setting transcription and keyPoints
-  if (session?.user) {
-    await saveToHistory();
-  }
-};
 
